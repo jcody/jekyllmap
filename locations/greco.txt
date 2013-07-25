@@ -1,0 +1,13 @@
+---
+title: 432 Columbus Ave
+host: Caffe Greco
+install_date: October 2010
+layout: location
+
+
+latitude: 37.798836
+longitude: -122.4081323
+
+features:
+
+---

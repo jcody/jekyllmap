@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+
+<h1>All Locations</h1><br />
+
+{% for page in site.pages %}
+  {% if page.layout == 'location' %}
+  <table>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Longitude
+      </th>
+      <th>
+        Latitude
+      </th>
+    </tr>
+    <tr>
+      <td>{{ page.title }}</td>
+      <td>{{ page.latitude }}</td>
+      <td>{{ page.longitude }}</td>
+    </tr>
+  </table>
+  {% endif %}
+{% endfor %}
+

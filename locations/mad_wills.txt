@@ -1,0 +1,13 @@
+---
+title: 384 Hayes St
+host: Mad Wills Food Co and Arlequin
+install_date: September 2011
+layout: location
+
+
+latitude: 37.776932
+longitude: -122.422800
+
+features:
+
+---

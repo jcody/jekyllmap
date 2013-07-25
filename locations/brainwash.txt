@@ -1,0 +1,13 @@
+---
+title: 1122 Folsom Street
+host: Brainwash Cafe
+install_date: Early 2013
+layout: location
+
+
+latitude: 37.776368
+longitude: -122.408594
+
+features:
+
+---
