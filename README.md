@@ -10,4 +10,4 @@ Installation
 
 Adding Locations
 -----------------
-Locations are located in the `/locations/` folder as .txt files.
+Locations are located in the `/locations` folder as .txt files.

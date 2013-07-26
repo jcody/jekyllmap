@@ -4,7 +4,7 @@ comment: \
   for the trailing comma doesn't work. Count the number of locationshow and manually
   increment an index to see if we're on the true last iteration.
 ---
-{
+var data = {
   "type": "FeatureCollection",
   "features": [
     {% assign count = 0 %}{% for page in site.pages %}{% if page.layout == "location" %}{% assign count = count | plus: 1 %}{% endif %}{% endfor %}{% assign i = 0 %}
@@ -20,7 +20,8 @@ comment: \
         },
         "properties": {
           "marker-symbol": "park2",
-          "name": "{{ page.title }}"
+          "name": "{{ page.title }}",
+          "image": "{{ page.image }}"
         }{% assign i = i | plus: 1 %}
       }{% if i < count %},{% endif %}
      {% endif %}{% endfor %}

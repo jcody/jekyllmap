@@ -3,7 +3,7 @@ layout: default
 ---
 
 
-<h1>All Locations</h1><br />
+<h1>All Locations</h1>
 
 {% for page in site.pages %}
   {% if page.layout == 'location' %}
@@ -29,4 +29,27 @@ layout: default
 {% endfor %}
 
 <h3>Map of All Parklets</h3>
-<script src="https://embed.github.com/view/geojson/dthompson/jekyllmap/gh-pages/bars.geojson"></script>
+
+<div id="map" style="width: 600px; height: 400px"></div>
+
+<script src="map.geojson"></script>
+<script>
+
+  var map = L.map('map').setView([37.7750, -122.4183], 12);
+
+  L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-vyofok3q/{z}/{x}/{y}.png', {
+    maxZoom: 18
+  }).addTo(map);
+
+
+
+  L.geoJson(data, {
+    style: function (feature) {
+      return { color: feature.properties.color };
+    },
+    onEachFeature: function(feature, layer) {
+      layer.bindPopup(feature.properties.name, feature.properties.image);
+    }
+  }).addTo(map);
+
+</script>
