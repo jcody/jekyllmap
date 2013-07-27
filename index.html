@@ -38,14 +38,16 @@ layout: default
   var map = L.map('map').setView([37.7750, -122.4183], 12);
 
   function onEachFeature(feature, layer) {
-    var popupContent = "<strong>" + feature.properties.name "</strong>";
+    var popupContent = document.createElement('div');
+    popupContent.innerHTML = "<strong>" + feature.properties.name + "</strong>";
 
     if (feature.properties.image) {
-      popupContent += '<br /><img src="/images/' + feature.properties.image + '" width="auto" height="200px">';
+      popupContent.innerHTML += '<br /><img src="/images/' + feature.properties.image + '" height="200px">';
     }
     console.log("attempting to add popup content");
     layer.bindPopup(popupContent);
   }
+
 
   L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-vyofok3q/{z}/{x}/{y}.png', {
     maxZoom: 18
