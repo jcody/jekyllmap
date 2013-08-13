@@ -20,8 +20,9 @@ var data = {
         },
         "properties": {
           "marker-symbol": "park2",
-          "name": "{{ page.title }}",
-          "image": "{{ page.image }}"
+          "title": "{{ page.title }}",
+          "image": "{{ page.image }}",
+          "url": "{{ page.url }}"
         }{% assign i = i | plus: 1 %}
       }{% if i < count %},{% endif %}
      {% endif %}{% endfor %}

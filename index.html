@@ -2,32 +2,37 @@
 layout: default
 ---
 
+<div class="row">
+  <div class="col-lg-4">
+  <h2>All Locations</h2>
 
-<h1>All Locations</h1>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th></th>
+      </tr>
+
+      {% for page in site.pages %}
+        {% if page.layout == 'location' %}
+      <tr>
+        <td><a href="{{ page.url }}">{{ page.title }}</a></td>
+        <td><p></p>
+      </tr>
+        {% endif %}
+      {% endfor %}
+
+    </table>
+  </div>
+
+  <div class="col-lg-8">
+    <h3>Map of All Parklets</h3>
+
+    <div id="map" style="height: 400px;"></div>
+  </div>
+</div>
 
 
-  <table>
-    <tr>
-      <th>Name</th>
-      <th></th>
-    </tr>
 
-
-    {% for page in site.pages %}
-      {% if page.layout == 'location' %}
-    <tr>
-      <td><a href="{{ page.url }}">{{ page.title }}</a></td>
-      <td><p></p>
-    </tr>
-      {% endif %}
-    {% endfor %}
-
-  </table>
-
-
-<h3>Map of All Parklets</h3>
-
-<div id="map" style="width: 600px; height: 400px"></div>
 
 <script src="map.geojson"></script>
 <script>
@@ -36,9 +41,7 @@ layout: default
 
   function onEachFeature(feature, layer) {
     var popupContent = document.createElement('div');
-    popupContent.innerHTML = '<a href="/' + feature.properties.permalink + '"><strong>' + feature.properties.name + "</strong></a>";
-    console.log("feature.properties: " + feature.properties);
-    console.log("layer: " + layer);
+    popupContent.innerHTML = '<a href=' + feature.properties.url + '><strong>' + feature.properties.title + "</strong></a>";
 
     if (feature.properties.image) {
       popupContent.innerHTML += '<br /><img src="/images/' + feature.properties.image + '" height="200px">';
@@ -51,8 +54,6 @@ layout: default
   L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-vyofok3q/{z}/{x}/{y}.png', {
     maxZoom: 18
   }).addTo(map);
-
-
 
   L.geoJson(data, {
     style: function (feature) {
