@@ -2,6 +2,7 @@
 title: 375 Valencia St
 host: Four Barrel Coffee
 install_date: June 2011
+
 layout: location
 
 image: "four_barrel.jpg"

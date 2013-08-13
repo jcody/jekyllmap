@@ -2,6 +2,7 @@
 title: 384 Hayes St
 host: Mad Wills Food Co and Arlequin
 install_date: September 2011
+
 layout: location
 
 image: "mad_wills.jpg"

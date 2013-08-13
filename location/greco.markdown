@@ -2,6 +2,7 @@
 title: 432 Columbus Ave
 host: Caffe Greco
 install_date: October 2010
+
 layout: location
 
 image: "greco.jpg"

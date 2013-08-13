@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SF Parklet Map</title>
+  <title>{{ page.title }}</title>
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
   <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
   <style>
@@ -9,11 +9,11 @@
   max-height:100%;
   </style>
 </head>
-
-
 <body>
+	{{ page.permalink }}
 
-{{ content }}
+	<h1>{{ page.title }}</h1>
 
+	<p>Image:</p>
+	<img src="/images/{{ page.image }}" height="300px">
 </body>
-</html>

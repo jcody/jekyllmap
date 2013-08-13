@@ -2,8 +2,8 @@
 title: 1122 Folsom Street
 host: Brainwash Cafe
 install_date: Early 2013
-layout: location
 
+layout: location
 image: "brainwash.jpg"
 
 latitude: 37.776368

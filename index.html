@@ -5,28 +5,25 @@ layout: default
 
 <h1>All Locations</h1>
 
-{% for page in site.pages %}
-  {% if page.layout == 'location' %}
+
   <table>
     <tr>
-      <th>
-        Name
-      </th>
-      <th>
-        Longitude
-      </th>
-      <th>
-        Latitude
-      </th>
+      <th>Name</th>
+      <th></th>
     </tr>
+
+
+    {% for page in site.pages %}
+      {% if page.layout == 'location' %}
     <tr>
-      <td>{{ page.title }}</td>
-      <td>{{ page.latitude }}</td>
-      <td>{{ page.longitude }}</td>
+      <td><a href="{{ page.url }}">{{ page.title }}</a></td>
+      <td><p></p>
     </tr>
+      {% endif %}
+    {% endfor %}
+
   </table>
-  {% endif %}
-{% endfor %}
+
 
 <h3>Map of All Parklets</h3>
 
@@ -39,7 +36,9 @@ layout: default
 
   function onEachFeature(feature, layer) {
     var popupContent = document.createElement('div');
-    popupContent.innerHTML = "<strong>" + feature.properties.name + "</strong>";
+    popupContent.innerHTML = '<a href="/' + feature.properties.permalink + '"><strong>' + feature.properties.name + "</strong></a>";
+    console.log("feature.properties: " + feature.properties);
+    console.log("layer: " + layer);
 
     if (feature.properties.image) {
       popupContent.innerHTML += '<br /><img src="/images/' + feature.properties.image + '" height="200px">';
