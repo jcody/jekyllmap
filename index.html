@@ -3,28 +3,19 @@ layout: default
 ---
 
 <div class="row">
-  <div class="col-lg-4">
-  <h2>All Locations</h2>
+  <div class="col-md-4">
+    <h2>All Locations</h2>
 
-    <table>
-      <tr>
-        <th>Name</th>
-        <th></th>
-      </tr>
-
-      {% for page in site.pages %}
-        {% if page.layout == 'location' %}
-      <tr>
-        <td><a href="{{ page.url }}">{{ page.title }}</a></td>
-        <td><p></p>
-      </tr>
-        {% endif %}
-      {% endfor %}
-
-    </table>
+    <div class="list-group">
+    {% for page in site.pages %}
+      {% if page.layout == 'location' %}
+      <a href="{{ page.url }}" class="list-group-item ">{{ page.title }}</a>
+      {% endif %}
+    {% endfor %}
+    </div>
   </div>
 
-  <div class="col-lg-8">
+  <div class="col-md-8">
     <h3>Map of All Parklets</h3>
 
     <div id="map" style="height: 400px;"></div>
@@ -37,7 +28,7 @@ layout: default
 <script src="map.geojson"></script>
 <script>
 
-  var map = L.map('map').setView([37.7750, -122.4183], 12);
+  var map = L.map('map').setView([37.78131, -122.42597], 13);
 
   function onEachFeature(feature, layer) {
     var popupContent = document.createElement('div');
