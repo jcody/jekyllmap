@@ -1,6 +1,6 @@
 ---
-title: 1315 18th St
-host: Farley's
+address: 1315 18th St
+title: Farley's
 install_date: August 2011
 
 layout: location

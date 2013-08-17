@@ -1,6 +1,6 @@
 ---
-title: 236 Townsend
-host: D'Urso Italian Delicatessen
+address: 236 Townsend
+title: D'Urso Italian Delicatessen
 install_date: September 2012
 
 layout: location

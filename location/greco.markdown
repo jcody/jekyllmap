@@ -1,6 +1,6 @@
 ---
-title: 432 Columbus Ave
-host: Caffe Greco
+address: 432 Columbus Ave
+title: Caffe Greco
 install_date: October 2010
 
 layout: location

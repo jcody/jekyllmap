@@ -1,6 +1,6 @@
 ---
-title: 1122 Folsom Street
-host: Brainwash Cafe
+address: 1122 Folsom Street
+title: Brainwash Cafe
 install_date: Early 2013
 
 layout: location

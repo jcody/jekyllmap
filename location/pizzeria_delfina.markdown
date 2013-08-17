@@ -1,6 +1,6 @@
 ---
-title: 2410 California Street
-host: Pizzeria Delfina
+address: 2410 California Street
+title: Pizzeria Delfina
 install_date: 2012
 
 layout: location

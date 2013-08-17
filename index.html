@@ -2,44 +2,80 @@
 layout: default
 ---
 
-<div class="row">
-  <div class="col-md-4">
+<div class="row main-content">
+  <div class="col-md-3">
     <h2>All Locations</h2>
-
-    <div class="list-group">
-    {% for page in site.pages %}
-      {% if page.layout == 'location' %}
-      <a href="{{ page.url }}" class="list-group-item ">{{ page.title }}</a>
+    <div class="list-group" id="listings">
+    {% assign count = 0 %}{% for page in site.pages %}
+      {% if page.layout == 'location' %}{% assign count = count | plus: 1 %}
+      <a href="#{{count}}" class="list-group-item" data-toggle="collapse" data-target="#{{count}}" data-parent="#listings">{{ page.title }}</a>
+      <div id="{{count}}" class="collapse">
+        <p>{{ page.address }}</p>
+        <p>{{ page.install_date }}</p>
+      </div>
       {% endif %}
     {% endfor %}
     </div>
   </div>
 
-  <div class="col-md-8">
-    <h3>Map of All Parklets</h3>
-
-    <div id="map" style="height: 400px;"></div>
+  <div class="col-md-9">
+    <div id="map" style="height: 600px;"></div>
   </div>
 </div>
 
+<script>
+  // close any open items when clicking to show another
+  //  and add .active to denote open element
+  var point;
+  $('.list-group-item').click(function() {
+    $('div.in').collapse('hide');
+    $('.active').removeClass('active');
+    $(this).addClass('active')
+    // get count of element, remove beggining '#5' => '5'
+    point = parseInt($(this).attr('data-target').substr(1,1));
+    console.log('Point is: ' + point);
+  });
 
 
+</script>
 
 <script src="map.geojson"></script>
 <script>
 
   var map = L.map('map').setView([37.78131, -122.42597], 13);
 
+  var redMarker = L.AwesomeMarkers.icon({
+    icon: 'coffee', 
+    color: 'red'
+  });
+
   function onEachFeature(feature, layer) {
     var popupContent = document.createElement('div');
-    popupContent.innerHTML = '<a href=' + feature.properties.url + '><strong>' + feature.properties.title + "</strong></a>";
+    popupContent.innerHTML = '<a href=' + feature.properties.url + '><strong>' + feature.properties.address + "</strong></a>";
 
     if (feature.properties.image) {
       popupContent.innerHTML += '<br /><img src="/images/' + feature.properties.image + '" height="200px">';
     }
     console.log("attempting to add popup content");
     layer.bindPopup(popupContent);
+
+    layer.on({
+        mouseover: highlightFeature
+    });
   }
+
+  function highlightFeature(e) {
+    var layer = e.target;
+
+    console.log(e);
+    // layer.setStyle({
+    //     weight: 5,
+    //     color: '#666',
+    //     dashArray: '',
+    //     fillOpacity: 0.7
+    // });
+  }
+
 
 
   L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-vyofok3q/{z}/{x}/{y}.png', {
@@ -47,15 +83,12 @@ layout: default
   }).addTo(map);
 
   L.geoJson(data, {
+    icon: redMarker,
     style: function (feature) {
-      return { color: feature.properties.color };
+      return { color: '#000' };
     },
     onEachFeature: onEachFeature
   }).addTo(map);
-
-  var parkIcon = L.icon({
-    iconUrl: '/css/park2-18.svg'
-  });
 
 
 

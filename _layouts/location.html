@@ -1,60 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>{{ page.title }}</title>
+---
+layout: default
+---
 
-  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
-  <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="/asset/css/style.css" />
-  <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
-  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-  <script src="/assets/js/bootstrap.min.js"></script>
-
-  <style>
-  max-width:100% !important;
-  max-height:100%;
-  </style>
-</head>
-<body>
-<div class="navbar-inverse">
-	<div class="container">
-		<a class="navbar-brand" href="/">Jekyll Mapping</a>
-		<ul class="nav navbar-nav">
-			<li class="active"><a href="/">Home</a></li>
-			<li><a href="#">About</a></li>
-		</ul>
-	</div>
-</div>
-
-<div class="container">
 <div class="row">
 	<div class="col-md-4">
-		<h2>{{ page.host }}</h2>
+		<h2>{{ page.title }}</h2>
 
 		<img src="/images/{{ page.image }}" width="100%">
 	</div>
 
 	<div class="col-md-8">
-		<h3>Map of {{ page.title }}</h3>
+		<h3>Map of {{ page.address }}</h3>
 		<div id="map" style="height: 400px"></div>
 	</div>
 </div>
-</div>
-
-
-	<script>
-
-	  var map = L.map('map').setView([ {{ page.latitude }}, {{ page.longitude }} ], 15);
-
-	  L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-vyofok3q/{z}/{x}/{y}.png', {
-	    maxZoom: 18
-	  }).addTo(map);
-
-	  var marker = L.marker([ {{page.latitude }}, {{ page.longitude }} ]).addTo(map);
-	  marker.bindPopup("<b>{{ page.title }}</b><br />Host: {{ page.host }}<br />Install Date: {{ page.install_date }}").openPopup();
 
 
 
-	</script>
-</body>
-</html>
+<script>
+
+  var map = L.map('map').setView([ {{ page.latitude }}, {{ page.longitude }} ], 15);
+
+  L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-vyofok3q/{z}/{x}/{y}.png', {
+    maxZoom: 18
+  }).addTo(map);
+
+  var marker = L.marker([ {{page.latitude }}, {{ page.longitude }} ]).addTo(map);
+  marker.bindPopup("<b>{{ page.address }}</b><br />Host: {{ page.title }}<br />Install Date: {{ page.install_date }}").openPopup();
+
+</script>

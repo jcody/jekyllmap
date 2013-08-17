@@ -1,6 +1,6 @@
 ---
-title: 3248 22nd Street
-host: Revolution Cafe, Escape from NY Pizza
+address: 3248 22nd Street
+title: Revolution Cafe, Escape from NY Pizza
 install_date: April 2010
 
 layout: location

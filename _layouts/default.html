@@ -2,37 +2,15 @@
 <html>
 <head>
   <title>SF Parklet Map</title>
-
-  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
-  <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="/asset/css/style.css" />
-  <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
-  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-  <script src="/assets/js/bootstrap.min.js"></script>
-
-  <style>
-  max-width:100% !important;
-  max-height:100%;
-  </style>
+  {% include scripts.html %}
 </head>
 
-
 <body>
-<div class="navbar-inverse">
-	<div class="container">
-		<a class="navbar-brand" href="/">Jekyll Mapping</a>
-		<ul class="nav navbar-nav">
-			<li class="active"><a href="/">Home</a></li>
-			<li><a href="#">About</a></li>
-		</ul>
-	</div>
-</div>
 
-<div class="container">
+{% include navbar.html %}
+
 
 {{ content }}
-
-</div>
 
 </body>
 </html>

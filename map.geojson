@@ -20,6 +20,7 @@ var data = {
         },
         "properties": {
           "marker-symbol": "park2",
+          "address": "{{ page.address }}",
           "title": "{{ page.title }}",
           "image": "{{ page.image }}",
           "url": "{{ page.url }}"

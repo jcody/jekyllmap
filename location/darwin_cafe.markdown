@@ -1,6 +1,6 @@
 ---
-title: 212 Ritch Street
-host: Darwin Cafe
+address: 212 Ritch Street
+title: Darwin Cafe
 install_date: July 2012
 
 layout: location

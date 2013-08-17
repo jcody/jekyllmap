@@ -1,6 +1,6 @@
 ---
-title: 914 Valencia Street
-host: Freewheel Bike Shop
+address: 914 Valencia Street
+title: Freewheel Bike Shop
 install_date: March 2011
 
 layout: location

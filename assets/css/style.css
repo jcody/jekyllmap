@@ -1,0 +1,9 @@
+.main-content .col-md-3, .main-content .col-md-9 {
+	padding: 0;
+}
+
+a.list-group-item, .list-group-item:first-child, .list-group-item:last-child {
+	border-left: 0px;
+	border-right: 0px;
+	border-radius: 0px;
+}
