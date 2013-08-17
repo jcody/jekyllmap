@@ -49,6 +49,9 @@ layout: default
     color: 'red'
   });
 
+  var markers = new Array();
+  var markerCount = 0;
+
   function onEachFeature(feature, layer) {
     var popupContent = document.createElement('div');
     popupContent.innerHTML = '<a href=' + feature.properties.url + '><strong>' + feature.properties.address + "</strong></a>";
@@ -59,15 +62,22 @@ layout: default
     console.log("attempting to add popup content");
     layer.bindPopup(popupContent);
 
+    markerCount++;
+    markers.push(markerCount);
+    console.log(markers);
+
     layer.on({
-        mouseover: highlightFeature
+        mouseover: hoverFeature,
+        mouseout: unhoverFeature,
+        mousedown: clickFeature
     });
   }
 
-  function highlightFeature(e) {
+  function hoverFeature(e) {
     var layer = e.target;
 
     console.log(e);
+    console.log(layer);
     // layer.setStyle({
     //     weight: 5,
     //     color: '#666',
@@ -76,6 +86,13 @@ layout: default
     // });
   }
 
+  function unhoverFeature(e) {
+
+  }
+
+  function clickFeature(e) {
+
+  }
 
 
   L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-vyofok3q/{z}/{x}/{y}.png', {
