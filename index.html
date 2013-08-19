@@ -24,18 +24,40 @@ layout: default
 </div>
 
 <script>
+markerMap = {}
   // close any open items when clicking to show another
   //  and add .active to denote open element
   var point;
   $('.list-group-item').click(function() {
     $('div.in').collapse('hide');
-    $('.active').removeClass('active');
-    $(this).addClass('active')
+
+    // if clicked the same element, remove highlight
+    if ($(this).hasClass('active')) {
+      $('.active').removeClass('active');
+    }
+    else {
+      $('.active').removeClass('active');
+      $(this).addClass('active')
+    }
+    
+
     // get count of element, remove beggining '#5' => '5'
     point = parseInt($(this).attr('data-target').substr(1,1));
     console.log('Point is: ' + point);
+
+    var marker = markerMap[point];
+    marker.openPopup();
   });
 
+
+  // highlight listing item like it's being hovered over on map point hover
+  function highlightListing(point) {
+    listItem = "#" + point;
+    // don't highlight if the point is current active item
+    if (! $("a[data-target='" + listItem + "']").hasClass('active')) {
+      $("a[data-target='" + listItem + "']").toggleClass('hover');
+    }
+  }
 
 </script>
 
@@ -44,9 +66,9 @@ layout: default
 
   var map = L.map('map').setView([37.78131, -122.42597], 13);
 
-  var redMarker = L.AwesomeMarkers.icon({
+  var parkletIcon = L.AwesomeMarkers.icon({
     icon: 'coffee', 
-    color: 'red'
+    color: 'green'
   });
 
   var markers = new Array();
@@ -59,12 +81,12 @@ layout: default
     if (feature.properties.image) {
       popupContent.innerHTML += '<br /><img src="/images/' + feature.properties.image + '" height="200px">';
     }
-    console.log("attempting to add popup content");
+
     layer.bindPopup(popupContent);
 
     markerCount++;
     markers.push(markerCount);
-    console.log(markers);
+    feature.properties.index = markerCount;
 
     layer.on({
         mouseover: hoverFeature,
@@ -73,25 +95,20 @@ layout: default
     });
   }
 
-  function hoverFeature(e) {
-    var layer = e.target;
-
-    console.log(e);
-    console.log(layer);
-    // layer.setStyle({
-    //     weight: 5,
-    //     color: '#666',
-    //     dashArray: '',
-    //     fillOpacity: 0.7
-    // });
+  function hoverFeature() {
+    var point = this.feature.properties.index;
+    highlightListing(point);
   }
 
-  function unhoverFeature(e) {
-
+  function unhoverFeature() {
+    var point = this.feature.properties.index;
+    highlightListing(point);
   }
 
-  function clickFeature(e) {
-
+  function clickFeature() {
+    var point = this.feature.properties.index;
+    highlightListing(point);
+    $('a[href="#' + point + '"]').click();
   }
 
 
@@ -99,12 +116,17 @@ layout: default
     maxZoom: 18
   }).addTo(map);
 
+
   L.geoJson(data, {
-    icon: redMarker,
-    style: function (feature) {
-      return { color: '#000' };
-    },
-    onEachFeature: onEachFeature
+    onEachFeature: onEachFeature,
+    pointToLayer: function (feature, latlng) {
+
+      var marker = new L.marker(latlng, {icon: parkletIcon});
+      console.log("FEATURE ID: " + markers);
+      markerMap[markers] = marker;
+      return marker;
+
+    }
   }).addTo(map);
 
 
