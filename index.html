@@ -9,9 +9,9 @@ layout: default
     {% assign count = 0 %}{% for page in site.pages %}
       {% if page.layout == 'location' %}{% assign count = count | plus: 1 %}
       <a href="#{{count}}" class="list-group-item" data-toggle="collapse" data-target="#{{count}}" data-parent="#listings">{{ page.title }}</a>
-      <div id="{{count}}" class="collapse">
-        <p>{{ page.address }}</p>
-        <p>{{ page.install_date }}</p>
+      <div id="{{count}}" class="collapse details">
+        <p><strong>Address:</strong> {{ page.address }}</p>
+        <p><strong>Installed:</strong> {{ page.install_date }}</p>
       </div>
       {% endif %}
     {% endfor %}
@@ -19,7 +19,14 @@ layout: default
   </div>
 
   <div class="col-md-9">
-    <div id="map" style="height: 600px;"></div>
+    <div id="map-container">
+      <div id="map"></div>
+
+      <i class="map-top"></i>
+      <i class="map-right"></i>
+      <i class="map-bottom"></i>
+      <i class="map-left"></i>
+    </div>
   </div>
 </div>
 
