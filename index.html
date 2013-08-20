@@ -24,10 +24,11 @@ layout: default
 </div>
 
 <script>
-markerMap = {}
+markerMap = {};
+var point;
+
   // close any open items when clicking to show another
   //  and add .active to denote open element
-  var point;
   $('.list-group-item').click(function() {
     $('div.in').collapse('hide');
 
@@ -39,11 +40,9 @@ markerMap = {}
       $('.active').removeClass('active');
       $(this).addClass('active')
     }
-    
 
-    // get count of element, remove beggining '#5' => '5'
+    // get index of element, remove beggining '#5' => '5'
     point = parseInt($(this).attr('data-target').substr(1,1));
-    console.log('Point is: ' + point);
 
     var marker = markerMap[point];
     marker.openPopup();
@@ -107,7 +106,9 @@ markerMap = {}
 
   function clickFeature() {
     var point = this.feature.properties.index;
-    highlightListing(point);
+    if (! $("a[data-target='" + listItem + "']").hasClass('active')) {
+      $("a[data-target='" + listItem + "']").toggleClass('hover');
+    }
     $('a[href="#' + point + '"]').click();
   }
 
@@ -122,8 +123,7 @@ markerMap = {}
     pointToLayer: function (feature, latlng) {
 
       var marker = new L.marker(latlng, {icon: parkletIcon});
-      console.log("FEATURE ID: " + markers);
-      markerMap[markers] = marker;
+      markerMap[markers.length + 1] = marker;
       return marker;
 
     }
