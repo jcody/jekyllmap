@@ -1,5 +1,5 @@
-.main-content .col-md-3, .main-content .col-md-9 {
-	padding: 0;
+.col-md-3, .col-md-9 {
+	padding: 0px;
 }
 
 a.list-group-item, .list-group-item:first-child, .list-group-item:last-child {
@@ -38,8 +38,9 @@ html, body {
 	overflow: hidden;
 }
 
-.col-md-3 {
+.main-content .col-md-3 {
 	border-right: 1px solid #aaa;
+	padding-left: 15px;
 }
 
 #map-container > i {
@@ -67,4 +68,8 @@ html, body {
     height: 100%;
     min-height: 100%;
     display: block;
+}
+
+a.list-group-item.active, a.list-group-item.active:hover {
+	background-color: #428bca;
 }

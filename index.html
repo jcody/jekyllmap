@@ -39,20 +39,25 @@ var point;
   $('.list-group-item').click(function() {
     $('div.in').collapse('hide');
 
+    // get index of element, remove beggining '#5' => '5'
+    point = parseInt($(this).attr('data-target').substr(1,1));
+    var marker = markerMap[point];
+
     // if clicked the same element, remove highlight
     if ($(this).hasClass('active')) {
       $('.active').removeClass('active');
+      $('.hover').removeClass('hover');
+      marker.closePopup();
     }
     else {
       $('.active').removeClass('active');
-      $(this).addClass('active')
+      $('.hover').removeClass('hover');
+      $(this).addClass('active');
+      marker.openPopup();
     }
 
-    // get index of element, remove beggining '#5' => '5'
-    point = parseInt($(this).attr('data-target').substr(1,1));
-
-    var marker = markerMap[point];
-    marker.openPopup();
+    
+    
   });
 
 
@@ -77,6 +82,11 @@ var point;
     color: 'green'
   });
 
+  var parkletIconHover = L.AwesomeMarkers.icon({
+    icon: 'coffee', 
+    color: 'darkgreen'
+  });
+
   var markers = new Array();
   var markerCount = 0;
 
@@ -97,7 +107,9 @@ var point;
     layer.on({
         mouseover: hoverFeature,
         mouseout: unhoverFeature,
-        mousedown: clickFeature
+        mousedown: clickFeature,
+        popupopen: openFeature,
+        popupclose: closeFeature
     });
   }
 
@@ -113,10 +125,19 @@ var point;
 
   function clickFeature() {
     var point = this.feature.properties.index;
+
+    $('a[href="#' + point + '"]').click();
+  }
+
+  function toggleList(state) {
+    listItem = "#" + point;
+    if (state == 'active') {
+
+    // don't highlight if the point is current active item
     if (! $("a[data-target='" + listItem + "']").hasClass('active')) {
       $("a[data-target='" + listItem + "']").toggleClass('hover');
     }
-    $('a[href="#' + point + '"]').click();
+    }
   }
 
 
