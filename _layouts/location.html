@@ -2,16 +2,22 @@
 layout: default
 ---
 
-<div class="row">
-	<div class="col-md-4">
+<div class="row main-content">
+	<div class="col-md-4 revealed">
 		<h2>{{ page.title }}</h2>
 
-		<img src="/images/{{ page.image }}" width="100%">
+		<img src="/images/{{ page.image }}" class="sidebar">
 	</div>
 
 	<div class="col-md-8">
-		<h3>Map of {{ page.address }}</h3>
-		<div id="map" style="height: 400px"></div>
+		<div id="map-container">
+			<div id="map"></div>
+
+			<i class="map-top"></i>
+			<i class="map-right"></i>
+			<i class="map-bottom"></i>
+			<i class="map-left"></i>
+		</div>
 	</div>
 </div>
 
