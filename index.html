@@ -56,7 +56,11 @@ var point;
       $('.active').removeClass('active');
       $('.hover').removeClass('hover');
       $(this).addClass('active');
+      if (coloredMarker != 'undefined') {
+        coloredMarker.setIcon(parkletIcon)
+      }
       marker.setIcon(parkletIconHover);
+      coloredMarker = marker;
     }
 
     
@@ -103,7 +107,7 @@ var point;
     layer.on({
         mouseover: hoverFeature,
         mouseout: unhoverFeature,
-         mousedown: clickFeature,
+         mousedown: clickFeature
         // popupopen: openFeature,
         // popupclose: closeFeature
     });
@@ -119,9 +123,15 @@ var point;
     highlightListing(point);
   }
 
+  var coloredMarker;
+
   function clickFeature() {
     var point = this.feature.properties.index;
+    if (typeof coloredMarker != 'undefined') {
+      coloredMarker.setIcon(parkletIcon);
+    }
     this.setIcon(parkletIconHover);
+    coloredMarker = this;
     $('a[href="#' + point + '"]').removeClass('hover');
     $('a[href="#' + point + '"]').click();
   }
