@@ -56,7 +56,7 @@ var point;
       $('.active').removeClass('active');
       $('.hover').removeClass('hover');
       $(this).addClass('active');
-      if (coloredMarker != 'undefined') {
+      if (typeof coloredMarker != 'undefined') {
         coloredMarker.setIcon(parkletIcon)
       }
       marker.setIcon(parkletIconHover);
