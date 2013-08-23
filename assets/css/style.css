@@ -1,5 +1,35 @@
+.leaflet-popup-content-wrapper {
+	box-shadow: 0;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	padding: 0px;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+	display: none;
+}
+
+.leaflet-popup-content {
+	margin: 0px;
+}
+
+.popHead {
+	color: #ffffff;
+	background-color: #428bca;
+	padding: 20px 10px;
+}
+
+
+
+
+
+/**** The above is strictly for mapping ***/
 .col-md-4, .col-md-8 {
 	padding: 0px;
+}
+
+.row {
+	margin: 0px;
 }
 
 a.list-group-item, .list-group-item:first-child, .list-group-item:last-child {
@@ -8,9 +38,10 @@ a.list-group-item, .list-group-item:first-child, .list-group-item:last-child {
 	border-radius: 0px;
 }
 
-h2 {
+h2.home {
 	padding-left: 15px;
 }
+
 
 .details {
 	padding: 0 15px;
@@ -57,7 +88,6 @@ html, body {
 
 .main-content .col-md-4 {
 	border-right: 1px solid #aaa;
-	padding-left: 15px;
 	overflow: scroll;
 }
 
@@ -67,8 +97,8 @@ html, body {
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.3);
 }
 
-.map-right { right: -5px; top: 0; bottom: 0; width: 5px; }
-.map-bottom { bottom: -5px; left: 0; right: 0; height: 5px; }
+
+.map-top { top: -5px; left: 0; right: 0; height: 5px; }
 .map-left { left: -5px; top: 0; bottom: 0; width: 5px; }
 
 .main-content {

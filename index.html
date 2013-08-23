@@ -4,7 +4,7 @@ layout: default
 
 <div class="row main-content">
   <div class="col-md-4">
-    <h2>All Locations</h2>
+    <h2 class="home">All Locations</h2>
     <div class="list-group" id="listings">
     {% assign count = 0 %}{% for page in site.pages %}
       {% if page.layout == 'location' %}{% assign count = count | plus: 1 %}
@@ -25,9 +25,8 @@ layout: default
     <div id="map-container">
       <div id="map"></div>
 
-      <i class="map-top"></i>
-      <i class="map-right"></i>
-      <i class="map-bottom"></i>
+      <!-- inner mapping shadow -->
+      <!-- <i class="map-top"></i> -->
       <i class="map-left"></i>
     </div>
   </div>
@@ -36,6 +35,7 @@ layout: default
 <script>
 markerMap = {};
 var point;
+var coloredMarker;
 
   // close any open items when clicking to show another
   //  and add .active to denote open element
@@ -59,12 +59,12 @@ var point;
       if (typeof coloredMarker != 'undefined') {
         coloredMarker.setIcon(parkletIcon)
       }
+      console.log("CLICKED ELEMENT: " + $(this));
+      console.log(marker);
       marker.setIcon(parkletIconHover);
       coloredMarker = marker;
     }
 
-    
-    
   });
 
 
@@ -107,9 +107,7 @@ var point;
     layer.on({
         mouseover: hoverFeature,
         mouseout: unhoverFeature,
-         mousedown: clickFeature
-        // popupopen: openFeature,
-        // popupclose: closeFeature
+        mousedown: clickFeature
     });
   }
 
@@ -123,15 +121,17 @@ var point;
     highlightListing(point);
   }
 
-  var coloredMarker;
+
 
   function clickFeature() {
     var point = this.feature.properties.index;
+    // if a current marker is colored, remove and higlight current selected
     if (typeof coloredMarker != 'undefined') {
       coloredMarker.setIcon(parkletIcon);
     }
     this.setIcon(parkletIconHover);
     coloredMarker = this;
+    console.log("MAP CLICKED colored marker: " + point);  
     $('a[href="#' + point + '"]').removeClass('hover');
     $('a[href="#' + point + '"]').click();
   }

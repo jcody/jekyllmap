@@ -6,16 +6,31 @@ layout: default
 	<div class="col-md-4 revealed">
 		<h2>{{ page.title }}</h2>
 
+		<table class="table table-bordered table-condensed">
+			<tr>
+				<thead><th>Features</th></thead>
+			</tr>
+			<tbody>
+			{% for tag in page.tags %}
+				<tr>
+					<td><i class="icon-check"> </i>{{ tag }}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+
 		<img src="/images/{{ page.image }}" class="sidebar">
+
+
+
+
 	</div>
 
 	<div class="col-md-8">
 		<div id="map-container">
 			<div id="map"></div>
 
-			<i class="map-top"></i>
-			<i class="map-right"></i>
-			<i class="map-bottom"></i>
+			<!-- <i class="map-top"></i> -->
 			<i class="map-left"></i>
 		</div>
 	</div>
@@ -24,6 +39,12 @@ layout: default
 
 
 <script>
+  var parkletIconHover = L.AwesomeMarkers.icon({
+    icon: 'coffee', 
+    color: 'blue'
+  });
+
+  var popupContent = '<div class="popHead"><b>{{ page.address }}</b></div><table class="details"> <tr><td>Host:</td>  <td>{{ page.title }}</td></tr> <tr><td>Installed:</td>  <td>{{ page.install_date }}</td></tr></table>';
 
   var map = L.map('map').setView([ {{ page.latitude }}, {{ page.longitude }} ], 15);
 
@@ -31,7 +52,9 @@ layout: default
     maxZoom: 18
   }).addTo(map);
 
-  var marker = L.marker([ {{page.latitude }}, {{ page.longitude }} ]).addTo(map);
-  marker.bindPopup("<b>{{ page.address }}</b><br />Host: {{ page.title }}<br />Install Date: {{ page.install_date }}").openPopup();
+  var marker = L.marker([ {{page.latitude }}, {{ page.longitude }} ], {icon: parkletIconHover}).addTo(map);
+
+
+  marker.bindPopup(popupContent).openPopup();
 
 </script>

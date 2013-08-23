@@ -9,6 +9,10 @@ image: "brainwash.jpg"
 latitude: 37.776368
 longitude: -122.408594
 
-features:
+tags:	
+- Seating
+- Plants
+- Tables
+- Benches
 
 ---
