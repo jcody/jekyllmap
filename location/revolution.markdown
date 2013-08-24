@@ -9,6 +9,10 @@ image: "revolution.jpg"
 latitude: 37.75535
 longitude: -122.41988
 
-features:
+tags:
+- Seating
+- Plants
+- Tables
+- Benches
 
 ---

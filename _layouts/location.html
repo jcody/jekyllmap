@@ -6,6 +6,7 @@ layout: default
 	<div class="col-md-4 revealed">
 		<h2>{{ page.title }}</h2>
 
+		{% if page.tags %}
 		<table class="table table-bordered table-condensed">
 			<tr>
 				<thead><th>Features</th></thead>
@@ -16,8 +17,14 @@ layout: default
 					<td><i class="icon-check"> </i>{{ tag }}</td>
 				</tr>
 			{% endfor %}
+			{% for missing in page.missing %}
+				<tr>
+					<td><i class="icon-check-empty"> </i>{{ missing }}</td>
+				</tr>
+			{% endfor %}
 			</tbody>
 		</table>
+		{% endif %}
 
 		<img src="/images/{{ page.image }}" class="sidebar">
 

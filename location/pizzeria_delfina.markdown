@@ -9,6 +9,10 @@ image: "pizzeria_delfina.jpg"
 latitude: 37.78896
 longitude: -122.43445
 
-features:
+tags:
+- Seating
+- Plants
+- Tables
+- Benches
 
 ---

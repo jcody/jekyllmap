@@ -10,6 +10,10 @@ image: "mad_wills.jpg"
 latitude: 37.776932
 longitude: -122.422800
 
-features:
+tags:
+- Seating
+- Plants
+- Tables
+- Benches
 
 ---

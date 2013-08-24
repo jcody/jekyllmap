@@ -10,6 +10,10 @@ image: "greco.jpg"
 latitude: 37.798836
 longitude: -122.4081323
 
-features:
+tags:
+- Seating
+- Plants
+- Tables
+- Benches
 
 ---

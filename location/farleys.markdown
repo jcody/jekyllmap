@@ -9,6 +9,10 @@ image: "farleys.jpg"
 latitude: 37.76237
 longitude: -122.39599
 
-features:
+tags:
+- Seating
+- Plants
+- Tables
+- Benches
 
 ---

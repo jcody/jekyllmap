@@ -9,6 +9,10 @@ image: "durso_italian.jpg"
 latitude: 37.77817
 longitude: -122.39385
 
-features:
+tags:
+- Seating
+- Plants
+- Tables
+- Benches
 
 ---

@@ -10,6 +10,10 @@ image: "four_barrel.jpg"
 latitude: 37.770579
 longitude: -122.421883
 
-features:
+tags:
+- Seating
+- Plants
+- Tables
+- Benches
 
 ---

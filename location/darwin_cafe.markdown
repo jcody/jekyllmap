@@ -9,6 +9,10 @@ image: "darwin_cafe.jpg"
 latitude: 37.78061
 longitude: -122.39614
 
-features:
+tags:
+- Seating
+- Plants
+- Tables
+- Benches
 
 ---

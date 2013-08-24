@@ -9,6 +9,14 @@ image: "freewheel.jpg"
 latitude: 37.75815
 longitude: -122.42149
 
-features:
+tags:
+- Seating
+- Plants
+- Tables
+- Benches
+
+missing:
+- People
+- Things
 
 ---
