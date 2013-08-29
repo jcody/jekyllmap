@@ -8,7 +8,7 @@ layout: default
     <div id="listings" class="list-group" >
     {% assign count = 0 %}{% for page in site.pages %}
       {% if page.layout == 'location' %}
-      <button onclick="expand({{count}})" class="list-group-item" data-target="{{count}}">{{ page.title }}</button>
+      <button class="list-group-item" data-toggle="collapse" data-parent="#listings" data-target="#{{count}}">{{ page.title }}</button>
       <div id="{{count}}" class="collapse details">
         <a href="{{ page.url }}" class="pull-right"><strong>More Info ></strong></a>
         <p><strong>Address:</strong> {{ page.address }}</p>
@@ -40,15 +40,17 @@ var point, coloredMarker;
 
   function expand(details) {
     console.log("expand function");
-    $('#' + details + '.collapse').collapse('toggle');
-    // $('#' + details + '.collapse').on({
-    //   shown: function(){
-    //       console.log("SHOWN");
-    //   },
-    //   hidden: function(){
-    //       console.log("HIDDEN");
-    //   }
-    // });
+    var hello = $('#' + details).collapse();
+    hello.on('shown', console.log("this is shown asshole"));
+
+    $('#' + details).on({
+      'shown': function(){
+          console.log("SHOWN");
+      },
+      hidden: function(){
+          console.log("HIDDEN");
+      }
+    });
 
   }
 
