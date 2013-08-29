@@ -5,16 +5,17 @@ layout: default
 <div class="row main-content">
   <div class="col-md-4">
     <h2 class="home">All Locations</h2>
-    <div id="listings" class="list-group" >
+    <div class="list-group" id="listings">
     {% assign count = 0 %}{% for page in site.pages %}
       {% if page.layout == 'location' %}
-      <button class="list-group-item" data-toggle="collapse" data-parent="#listings" data-target="#{{count}}">{{ page.title }}</button>
-      <div id="{{count}}" class="collapse details">
-        <a href="{{ page.url }}" class="pull-right"><strong>More Info ></strong></a>
-        <p><strong>Address:</strong> {{ page.address }}</p>
-        <p><strong>Installed:</strong> {{ page.install_date }}</p>
-        <img src="/images/{{ page.image }}" class="sidebar" />
-        
+      <div>
+        <button class="list-group-item" data-toggle="collapse" data-target="#{{count}}">{{ page.title }}</button>
+        <div id="{{count}}" class="collapse details">
+          <a href="{{ page.url }}" class="pull-right"><strong>More Info ></strong></a>
+          <p><strong>Address:</strong> {{ page.address }}</p>
+          <p><strong>Installed:</strong> {{ page.install_date }}</p>
+          <img src="/images/{{ page.image }}" class="sidebar" />
+        </div>
       </div>
       {% assign count = count | plus: 1 %}
       {% endif %}
@@ -38,64 +39,36 @@ markerMap = {};
 var point, coloredMarker;
 
 
-  function expand(details) {
-    console.log("expand function");
-    var hello = $('#' + details).collapse();
-    hello.on('shown', console.log("this is shown asshole"));
-
-    $('#' + details).on({
-      'shown': function(){
-          console.log("SHOWN");
-      },
-      hidden: function(){
-          console.log("HIDDEN");
-      }
-    });
-
-  }
-
-  // LIST CLICK
+  // LIST clicking
   // close any open items when clicking to show another
-  // and add .active to denote open element
-//   $('.list-group-item').click(function() {
-    
-    
+  //  and add .active to denote open element
+  $('.list-group-item').click(function() {
+    // hide any open list items
+    $('div.in').collapse('hide');
 
-//     // get index of element, remove beggining '#5' => '5'
-//     point = parseInt($(this).attr('data-target'));
-//     console.log(point);
-//     var marker = markerMap[point];
+    // get index of element, remove beggining '#5' => '5'
+    point = parseInt($(this).attr('data-target').substr(1,1));
+    var marker = markerMap[point];
 
+    // if clicked the same element, remove highlight
+    if ($(this).hasClass('active')) {
+      $('.active').removeClass('active');
+      $('.hover').removeClass('hover');
+      marker.setIcon(parkletIcon);
+    }
+    else {
+      $('.active').removeClass('active');
+      $('.hover').removeClass('hover');
+      $(this).addClass('active');
+      if (typeof coloredMarker != 'undefined') {
+        coloredMarker.setIcon(parkletIcon)
+      }
+      console.log(marker);
+      marker.setIcon(parkletIconHover);
+      coloredMarker = marker;
+    }
 
-
-    
-//     $('#'+point).on({
-//     'shown': function(){
-//         console.log("SHOWN");
-//     },
-//     hide: function(){
-//         console.log("HIDDEN");
-//     }
-// });
-
-//     // if clicked the same element, remove highlight
-//     if ($(this).hasClass('active')) {
-//       $('.active').removeClass('active');
-//       $('.hover').removeClass('hover');
-//       marker.setIcon(parkletIcon);
-//     }
-//     else {
-//       $('.active').removeClass('active');
-//       $('.hover').removeClass('hover');
-//       $(this).addClass('active');
-//       if (typeof coloredMarker != 'undefined') {
-//         coloredMarker.setIcon(parkletIcon)
-//       }
-//       marker.setIcon(parkletIconHover);
-//       coloredMarker = marker;
-//     }
-
-//   });
+  });
 
 
   // highlight listing item like it's being hovered over on map point hover
