@@ -44,14 +44,24 @@ layout: default
 markerMap = {};
 var point, coloredMarker;
 
-
+  
   // LIST clicking
   // close any open items when clicking to show another
   //  and add .active to denote open element
   $('.list-group-item').click(function() {
-    // hide any open list items
+    if ($(this).next().hasClass('collapsing')) {
+      var transition = true;
+    }
 
-    $(this).next().collapse('toggle', {parent: '#listings'});
+    // hide any open list items
+    $('.details.in').collapse('hide');
+
+    $(this).next().collapse('toggle');
+
+
+    
+
+
 
 
     // get index of element, remove beggining '#5' => '5'
@@ -61,22 +71,28 @@ var point, coloredMarker;
     // $(this).next().on({
     //   'show.bs.collapse':
     // })
-    // if clicked the same element, remove highlight
-    if ($(this).hasClass('active')) {
-      $('.active').removeClass('active');
-      $('.hover').removeClass('hover');
-      marker.setIcon(parkletIcon);
-    }
-    else {
-      $('.active').removeClass('active');
-      $('.hover').removeClass('hover');
-      $(this).addClass('active');
-      if (typeof coloredMarker != 'undefined') {
-        coloredMarker.setIcon(parkletIcon)
+    if (transition == true) {
+      console.log('No double clicking dude.');
+    } else {
+
+      // if clicked the same element, remove highlight
+      if ($(this).hasClass('active')) {
+        $('.active').removeClass('active');
+        $('.hover').removeClass('hover');
+        marker.setIcon(parkletIcon);
       }
-      marker.setIcon(parkletIconHover);
-      coloredMarker = marker;
+      else {
+        $('.active').removeClass('active');
+        $('.hover').removeClass('hover');
+        $(this).addClass('active');
+        if (typeof coloredMarker != 'undefined') {
+          coloredMarker.setIcon(parkletIcon)
+        }
+        marker.setIcon(parkletIconHover);
+        coloredMarker = marker;
+      }
     }
+
 
   });
 
