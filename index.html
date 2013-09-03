@@ -3,27 +3,9 @@ layout: default
 ---
 
 <div class="row main-content">
-  <div class="col-md-4">
-    <h2 class="home">All Locations</h2>
-    <div class="list-group" id="listings">
-    {% assign count = 0 %}{% for page in site.pages %}
-      {% if page.layout == 'location' %}
-      <div>
-        <button class="list-group-item" data-toggle="collapse" data-target="#{{count}}">{{ page.title }}</button>
-        <div id="{{count}}" class="collapse details">
-          <a href="{{ page.url }}" class="pull-right"><strong>More Info ></strong></a>
-          <p><strong>Address:</strong> {{ page.address }}</p>
-          <p><strong>Installed:</strong> {{ page.install_date }}</p>
-          <img src="/images/{{ page.image }}" class="sidebar" />
-        </div>
-      </div>
-      {% assign count = count | plus: 1 %}
-      {% endif %}
-    {% endfor %}
-    </div>
-  </div>
 
-  <div class="col-md-8">
+
+<div class="col-md-12">
     <div id="map-container">
       <div id="map"></div>
 
@@ -31,7 +13,31 @@ layout: default
       <!-- <i class="map-top"></i> -->
       <i class="map-left"></i>
     </div>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-1 side-list">
+        <div class="point-counter"><span class="count-highlight">12</span> Parklets Found</div>
+        <div class="list-group" id="listings">
+        {% assign count = 0 %}{% for page in site.pages %}
+          {% if page.layout == 'location' %}
+
+            <button class="list-group-item" data-target="#{{count}}">{{ page.title }} <p class="address">{{page.address}}</p></button>
+            <div id="{{count}}" class="collapse details">
+              <a href="{{ page.url }}" class="pull-right"><strong>More Info ></strong></a>
+              <p><strong>Installed:</strong> {{ page.install_date }}</p>
+              <img src="/images/{{ page.image }}" class="sidebar" />
+            </div>
+
+        {% assign count = count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+    <div class="col-md-8"></div>
   </div>
+
+</div>
+
+
 </div>
 
 <script>
@@ -44,12 +50,17 @@ var point, coloredMarker;
   //  and add .active to denote open element
   $('.list-group-item').click(function() {
     // hide any open list items
-    $('div.in').collapse('hide');
+
+    $(this).next().collapse('toggle', {parent: '#listings'});
+
 
     // get index of element, remove beggining '#5' => '5'
     point = parseInt($(this).attr('data-target').substr(1,1));
     var marker = markerMap[point];
 
+    // $(this).next().on({
+    //   'show.bs.collapse':
+    // })
     // if clicked the same element, remove highlight
     if ($(this).hasClass('active')) {
       $('.active').removeClass('active');
@@ -63,7 +74,6 @@ var point, coloredMarker;
       if (typeof coloredMarker != 'undefined') {
         coloredMarker.setIcon(parkletIcon)
       }
-      console.log(marker);
       marker.setIcon(parkletIconHover);
       coloredMarker = marker;
     }
@@ -140,6 +150,7 @@ var point, coloredMarker;
   // Leaflet tiles
   L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-vyofok3q/{z}/{x}/{y}.png', {maxZoom: 18}).addTo(map);
 
+
   // Extending Leaflet default markers with AwesomeMarkers library
   var parkletIcon = L.AwesomeMarkers.icon({icon: 'coffee', color: 'green'});
   var parkletIconHover = L.AwesomeMarkers.icon({icon: 'coffee', color: 'blue'});
@@ -155,6 +166,10 @@ var point, coloredMarker;
       return marker;
     }
   }).addTo(map);
+
+  L.control.zoom().setPosition('bottomleft');
+  L.control.attribution().addAttribution('Made by Code for America').addTo(map);
+
 
 
 

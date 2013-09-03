@@ -51,7 +51,7 @@ layout: default
     color: 'blue'
   });
 
-  var popupContent = '<div class="popHead"><b>{{ page.address }}</b></div><table class="details"> <tr><td>Host:</td>  <td>{{ page.title }}</td></tr> <tr><td>Installed:</td>  <td>{{ page.install_date }}</td></tr></table>';
+  var popupContent = '<div class="popHead"><b>{{ page.address }}</b></div><div class="metadata"><table> <tr><td>Host:</td>  <td>{{ page.title }}</td></tr> <tr><td>Installed:</td>  <td>{{ page.install_date }}</td></tr></table></div>';
 
   var map = L.map('map').setView([ {{ page.latitude }}, {{ page.longitude }} ], 15);
 
