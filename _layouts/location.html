@@ -29,7 +29,7 @@ layout: default
 					</div>
 				</div>
 			</div>
-	    <div class="col-md-1 col-md-offset-10 flag fixed">
+	    <div class="col-md-1 col-md-offset-11 flag fixed">
 	      <div class="point-counter"><p>Crafted By:</p>
 	        <a href="https://github.com/mick/jekyllmap"><img src="/assets/img/cfa_flag.png" width="50px" height="30px" /></a>
 	      </div>
@@ -56,9 +56,9 @@ layout: default
     color: 'blue'
   });
 
-  var popupContent = '<div class="popHead" class="text-center"><strong>{{ page.address }}</strong></div><div class="metadata"><strong>Host:</strong> {{ page.title }}<br /><strong>Installed:</strong> {{ page.install_date }}</div>';
+  var popupContent = '<div class="popHead" class="text-center"><strong>{{ page.address }}</strong></div><div class="metadata"><strong>Host:</strong> {{ page.title }}<br /><strong>Opened:</strong> {{ page.install_date }}</div><div class="text-center"><a href="http://maps.google.com/?q={{page.latitude}},{{page.longitude}}" type="button" class="btn btn-default btn-xs">Get Directions <i class="icon-chevron-sign-right" style="color:#428bca;"></i></a></div>';
 
-  var map = L.map('map', {scrollWheelZoom: false}).setView([ {{ page.latitude }}, {{ page.longitude }} ], 15);
+  var map = L.map('map', {scrollWheelZoom: false}).setView([ {{ page.latitude }}, {{ page.longitude }} ], 14);
 
   L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-vyofok3q/{z}/{x}/{y}.png', {
     maxZoom: 18
@@ -66,7 +66,10 @@ layout: default
 
   var marker = L.marker([ {{page.latitude }}, {{ page.longitude }} ], {icon: markerIconActive}).addTo(map);
 
+  var popup = L.popup({closeButton: false, keepInView: true, closeOnClick: false}).setLatLng([{{page.latitude}},{{page.longitude}}]).setContent(popupContent);
 
-  marker.bindPopup(popupContent).openPopup();
+  marker.bindPopup(popup).openPopup();
+
+
 
 </script>
