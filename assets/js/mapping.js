@@ -48,7 +48,7 @@ var jekyllMap = (function (jekyllMap) {
   // PUBLIC METHODS
   function init() {
 
-    var map = L.map('map', {scrollWheelZoom: false}).setView([37.768603,-122.469234], 13);
+    var map = L.map('map', {scrollWheelZoom: false});
     map.attributionControl.setPrefix("");
 
     // mapping tiles
@@ -56,7 +56,7 @@ var jekyllMap = (function (jekyllMap) {
 
     // Leaflet marker points creation, each marker on a new layer
     // Takes in generated .geojson file and adds to map
-    L.geoJson(data, {
+    var pointy = L.geoJson(data, {
       onEachFeature: function (feature, layer) {
         markers.push(markerCount);
         feature.properties.index = markerCount;
@@ -69,6 +69,10 @@ var jekyllMap = (function (jekyllMap) {
         return marker;
       }
     }).addTo(map);
+
+    // account for sidebar and adjust map 450px to right 
+    // and pad top+bottom 30px => this adjusts the zoom automagically, super convenient
+    map.fitBounds(pointy.getBounds(), {paddingTopLeft: [450, 30], paddingBottomRight: [0, 30]});
 
   }
 

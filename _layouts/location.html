@@ -60,6 +60,11 @@ layout: default
 
   var map = L.map('map', {scrollWheelZoom: false}).setView([ {{ page.latitude }}, {{ page.longitude }} ], 14);
 
+  // hacky solution to move map over to fit point with sidebar in view
+  // paddingTopLeft option is only available to the fitBounds() method
+  var bounds = map.getBounds([{{page.latitude}}, {{page.longitude}}]);
+  map.fitBounds(bounds, {paddingTopLeft: [200, 0]}).setZoom(14);
+
   L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-vyofok3q/{z}/{x}/{y}.png', {
     maxZoom: 18
   }).addTo(map);
@@ -69,7 +74,5 @@ layout: default
   var popup = L.popup({closeButton: false, keepInView: true, closeOnClick: false}).setLatLng([{{page.latitude}},{{page.longitude}}]).setContent(popupContent);
 
   marker.bindPopup(popup).openPopup();
-
-
 
 </script>
