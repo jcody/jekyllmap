@@ -1,6 +1,8 @@
 ---
 layout: default
 ---
+{% assign total = 0 %}{% for page in site.pages %}{% if page.layout == 'location' %}
+{% assign total = total | plus: 1 %}{% endif %}{% endfor %}
 
 <div class="row main-content">
 
@@ -10,13 +12,14 @@ layout: default
       <div id="map"></div>
 
       <!-- inner mapping shadow -->
-      <!-- <i class="map-top"></i> -->
-      <i class="map-left"></i>
+      <i class="map-top"></i>
+      <!-- <i class="map-left"></i> -->
     </div>
     <div class="row">
-      <div class="col-md-3 col-md-offset-1 side-list">
-        <div class="point-counter"><span class="count-highlight">12</span> Parklets Found</div>
+      <div class="col-md-4 col-md-offset-1 side-list">
+        <div class="point-counter"><span class="count-highlight">{{total}}</span> Parklets Found</div>
         <div class="list-group" id="listings">
+          <div class="list-group-container">
         {% assign count = 0 %}{% for page in site.pages %}
           {% if page.layout == 'location' %}
 
@@ -30,9 +33,15 @@ layout: default
         {% assign count = count | plus: 1 %}
         {% endif %}
       {% endfor %}
+    </div>
+      </div>
+
+    </div>
+    <div class="col-md-1 col-md-offset-6 flag">
+      <div class="point-counter"><p>Crafted By:</p>
+        <a href="https://github.com/mick/jekyllmap"><img src="/assets/img/cfa_flag.png" width="50px" height="30px" /></a>
       </div>
     </div>
-    <div class="col-md-8"></div>
   </div>
 
 </div>
@@ -40,153 +49,5 @@ layout: default
 
 </div>
 
-<script>
-markerMap = {};
-var point, coloredMarker;
-
-  
-  // LIST clicking
-  // close any open items when clicking to show another
-  //  and add .active to denote open element
-  $('.list-group-item').click(function() {
-    if ($(this).next().hasClass('collapsing')) {
-      var transition = true;
-    }
-
-    // hide any open list items
-    $('.details.in').collapse('hide');
-
-    $(this).next().collapse('toggle');
-
-
-    
-
-
-
-
-    // get index of element, remove beggining '#5' => '5'
-    point = parseInt($(this).attr('data-target').substr(1,1));
-    var marker = markerMap[point];
-
-    // $(this).next().on({
-    //   'show.bs.collapse':
-    // })
-    if (transition == true) {
-      console.log('No double clicking dude.');
-    } else {
-
-      // if clicked the same element, remove highlight
-      if ($(this).hasClass('active')) {
-        $('.active').removeClass('active');
-        $('.hover').removeClass('hover');
-        marker.setIcon(parkletIcon);
-      }
-      else {
-        $('.active').removeClass('active');
-        $('.hover').removeClass('hover');
-        $(this).addClass('active');
-        if (typeof coloredMarker != 'undefined') {
-          coloredMarker.setIcon(parkletIcon)
-        }
-        marker.setIcon(parkletIconHover);
-        coloredMarker = marker;
-      }
-    }
-
-
-  });
-
-
-  // highlight listing item like it's being hovered over on map point hover
-  function highlightListing(point) {
-    listItem = "#" + point;
-    // don't highlight if the point is current active item
-    if (! $("button[data-target='" + listItem + "']").hasClass('active')) {
-      $("button[data-target='" + listItem + "']").toggleClass('hover');
-    }
-  }
-
-</script>
-
 <script src="map.geojson"></script>
-<script>
-
-  var map = L.map('map').setView([37.78131, -122.42597], 13);
-  var markers = new Array();
-  var markerCount = 0;
-
-  // Leaflet point marker creation, each point is on a new layer
-  function onEachFeature(feature, layer) {
-    markers.push(markerCount);
-    feature.properties.index = markerCount;
-    layer.on({
-        mouseover: hoverFeature,
-        mouseout: unhoverFeature,
-        mousedown: clickFeature
-    });
-    markerCount++;
-  }
-
-  // Hovering Leaflet map
-  function hoverFeature() {
-    var point = this.feature.properties.index;
-    highlightListing(point);
-  }
-
-  // Unhovering Leaflet map
-  function unhoverFeature() {
-    var point = this.feature.properties.index;
-    highlightListing(point);
-  }
-
-
-  // Clicking Leaflet map
-  function clickFeature() {
-    var point = this.feature.properties.index;
-    // if a current marker is colored, remove and higlight current selected
-    if (typeof coloredMarker != 'undefined') {
-      coloredMarker.setIcon(parkletIcon);
-    }
-    this.setIcon(parkletIconHover);
-    coloredMarker = this;  
-    $('button[data-target="#' + point + '"]').removeClass('hover');
-    $('button[data-target="#' + point + '"]').click();
-  }
-
-  function toggleList(state) {
-    listItem = "#" + point;
-    if (state == 'active') {
-    // don't highlight if the point is curren active item
-    if (! $("button[data-target='" + listItem + "']").hasClass('active')) {
-      $("button[data-target='" + listItem + "']").toggleClass('hover');
-    }
-    }
-  }
-
-  // Leaflet tiles
-  L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-vyofok3q/{z}/{x}/{y}.png', {maxZoom: 18}).addTo(map);
-
-
-  // Extending Leaflet default markers with AwesomeMarkers library
-  var parkletIcon = L.AwesomeMarkers.icon({icon: 'coffee', color: 'green'});
-  var parkletIconHover = L.AwesomeMarkers.icon({icon: 'coffee', color: 'blue'});
-
-
-  // Initial Leaflet map creation function
-  // Takes in generated .geojson file and renders map
-  L.geoJson(data, {
-    onEachFeature: onEachFeature,
-    pointToLayer: function (feature, latlng) {
-      var marker = new L.marker(latlng, {icon: parkletIcon});
-      markerMap[markers.length] = marker;
-      return marker;
-    }
-  }).addTo(map);
-
-  L.control.zoom().setPosition('bottomleft');
-  L.control.attribution().addAttribution('Made by Code for America').addTo(map);
-
-
-
-
-</script>
+<script src="/assets/js/mapping.js"></script>

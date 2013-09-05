@@ -1,5 +1,5 @@
 .leaflet-popup-content-wrapper {
-	box-shadow: 0;
+	box-shadow: none;
 	-webkit-border-radius: 0px;
 	border-radius: 5px;
 	padding: 0px;
@@ -25,6 +25,8 @@ div.metadata {
 	padding: 20px 10px;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
+	color: #555;
+	font-size: 11px;
 }
 
 
@@ -35,7 +37,31 @@ div.metadata {
 
 
 
+div.reveal {
+	padding: 10px;
+	margin-bottom: -1px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 3px 0 rgba(0,0,0,0.5);
+	background: #FAF7F5;
+}
 
+div.flag {
+	z-index: 2;
+}
+
+div.flag.fixed {
+	position: fixed;
+}
+
+div.flag > .point-counter {
+	background: #000;
+	border: none;
+	border-top: 1px solid #222;
+	color: #eee;
+	font-size: 10px;
+	font-weight: normal;
+}
 
 
 
@@ -69,7 +95,7 @@ h2.home {
 
 div.details {
 	/*box-shadow: inset 0px 5px 2px rgba(0, 0, 0, 0.8), 0px -10px 5px #000;*/
-	background-color: #eee;
+	background-color: #fff;
 	font-size: 12px;
 }
 
@@ -92,6 +118,8 @@ div.details {
 img.sidebar {
 	max-width: 100%;
 	height: auto;
+	border-radius: 5px;
+	border: 1px solid #fefefe;
 }
 
 
@@ -124,6 +152,7 @@ body {
 div.side-list {
 	position: relative;
 	z-index: 2;
+	padding: 0;
 }
 
 
@@ -142,19 +171,22 @@ div.side-list {
 }
 
 .point-counter {
-	background: #fff;
+	background: #FAF7F5;
 	margin-bottom: 10px;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
-	box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
+	box-shadow: 0 0 3px 0 rgba(0,0,0,0.4);
 	text-align: center;
 	border: 1px solid #fff;
 	font-weight: bold;
+	font-size: 16px;
 	padding: 5px;
 }
 
 .count-highlight {
-	color: #5bc0de;
+	color: #53AED7;
+	font-size: 18px;
+	text-shadow: 0px 1px 1px #fff;
 }
 
 
@@ -179,6 +211,11 @@ div.side-list {
 
 .list-group-item:first-child {
 	border-top: 0;
+	border-radius: inherit;
+}
+
+.list-group-container {
+	box-shadow: 0 0 3px 0 rgba(0,0,0,0.5);
 }
 
 
@@ -189,7 +226,7 @@ p.address {
 }
 
 
-button.list-group-item, .list-group-item:first-child, .list-group-item:last-child {
+button.list-group-item {
 	border-left: 0px;
 	border-right: 0px;
 	color: #555;
@@ -197,6 +234,7 @@ button.list-group-item, .list-group-item:first-child, .list-group-item:last-chil
 	text-align: left;
 	font-size: 13px;
 	font-weight: bold;
+	background: #FAF7F5;
 }
 
 button.list-group-item:last-child {

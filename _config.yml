@@ -2,5 +2,6 @@ title: Parklets Map
 created_by: Code for America
 
 relative_permalinks: true
+permalink: pretty
 
 markdown: redcarpet
