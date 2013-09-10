@@ -11,15 +11,15 @@ layout: default
     <div class="row">
       <div class="col-md-4 col-md-offset-1 side-list">
         <div class="point-counter">
-        	<span class="count-highlight">{{page.title}} Parklet</span>
+        	<span class="count-highlight">{{page.title}} City</span>
         	<p class="address">{{page.address}}</p>
-        	<p class="address">{{page.install_date}}</p>
+        	<p class="address">Population: {{page.info}}</p>
         </div>
         <div class="list-group" id="listings">
         	<div class="reveal">
-        		<img src="/images/{{ page.image }}" class="sidebar">
-        		<h2 class="list-tags">Ammenities:</h2>
-						{% if page.tags %}
+        		{% if page.image %}<img src="/images/{{ page.image }}" class="sidebar">{% endif %}
+        		{% if page.tags %}
+        		<h2 class="list-tags">Page Tags:</h2>
 							<ul class="list-inline">
 								{% for tag in page.tags %}
 									<li><i class="icon-check" style="color:#428bca;"></i> {{tag}} </li>
@@ -51,25 +51,19 @@ layout: default
 
 
 <script>
-  var markerIconActive = L.AwesomeMarkers.icon({
-    icon: 'coffee', 
-    color: 'blue'
-  });
+  var markerIconActive = L.AwesomeMarkers.icon({icon: 'icon-building', color: 'blue'});
 
-  var popupContent = '<div class="popHead" class="text-center"><strong>{{ page.address }}</strong></div><div class="metadata"><strong>Host:</strong> {{ page.title }}<br /><strong>Opened:</strong> {{ page.install_date }}</div><div class="text-center"><a href="http://maps.google.com/?q={{page.latitude}},{{page.longitude}}" type="button" class="btn btn-default btn-xs">Get Directions <i class="icon-chevron-sign-right" style="color:#428bca;"></i></a></div>';
+  var popupContent = "<div class='popHead' class='text-center'><strong>{{ page.address }}</strong></div><div class='metadata'><strong>City:</strong> {{ page.title }}<br /><strong>Population:</strong> {{ page.info }}</div><div class='text-center'>{% if site.directions == true %}<a href='http://maps.google.com/?q={{page.latitude}},{{page.longitude}}' type='button' class='btn btn-default btn-xs'>Get Directions <i class='icon-chevron-sign-right' style='color:#428bca;'></i></a>{% endif %}</div>";
 
-  var map = L.map('map', {scrollWheelZoom: false}).setView([ {{ page.latitude }}, {{ page.longitude }} ], 14);
+  var map = L.map('map', {scrollWheelZoom: false}).setView([{{ page.latitude }}, {{ page.longitude }}], 6);
 
-  // hacky solution to move map over to fit point with sidebar in view
-  // paddingTopLeft option is only available to the fitBounds() method
-  var bounds = map.getBounds([{{page.latitude}}, {{page.longitude}}]);
-  map.fitBounds(bounds, {paddingTopLeft: [200, 0]}).setZoom(14);
+  // adjust 200px right to account for sidebar
+  map.panBy([-200,0], {animate: false});
 
-  L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-vyofok3q/{z}/{x}/{y}.png', {
-    maxZoom: 18
-  }).addTo(map);
 
-  var marker = L.marker([ {{page.latitude }}, {{ page.longitude }} ], {icon: markerIconActive}).addTo(map);
+  L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-vyofok3q/{z}/{x}/{y}.png', {maxZoom: 18}).addTo(map);
+
+  var marker = L.marker([{{page.latitude }}, {{ page.longitude }}], {icon: markerIconActive}).addTo(map);
 
   var popup = L.popup({closeButton: false, keepInView: true, closeOnClick: false}).setLatLng([{{page.latitude}},{{page.longitude}}]).setContent(popupContent);
 

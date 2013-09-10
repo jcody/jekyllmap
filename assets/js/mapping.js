@@ -41,8 +41,8 @@ var jekyllMap = (function (jekyllMap) {
   var markerMap = {};
 
   // Extending Leaflet default markers with AwesomeMarkers library
-  var markerIcon = L.AwesomeMarkers.icon({icon: 'coffee', color: 'green'});
-  var markerIconActive = L.AwesomeMarkers.icon({icon: 'coffee', color: 'blue'});
+  var markerIcon = L.AwesomeMarkers.icon({icon: 'icon-building', color: 'green'});
+  var markerIconActive = L.AwesomeMarkers.icon({icon: 'icon-building', color: 'blue'});
 
 
   // PUBLIC METHODS

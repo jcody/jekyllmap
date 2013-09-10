@@ -17,7 +17,10 @@ layout: default
     </div>
     <div class="row">
       <div class="col-md-4 col-md-offset-1 side-list">
-        <div class="point-counter"><span class="count-highlight">{{total}}</span> Parklets Found</div>
+        <div class="point-counter">
+          Top <span class="count-highlight">{{total}}</span> Most Populated US Cities
+          {% if total == 0 %}<br />Add .txt or .markdown files containing longitude/latitude coordinates to '/location/'{% endif %}
+        </div>
         <div class="list-group" id="listings">
           <div class="list-group-container">
         {% assign count = 0 %}{% for page in site.pages %}
@@ -26,8 +29,8 @@ layout: default
             <button class="list-group-item" data-target="#{{count}}">{{ page.title }} <p class="address">{{page.address}}</p></button>
             <div id="{{count}}" class="collapse details">
               <a href="{{ page.url }}" class="pull-right"><strong>More Info ></strong></a>
-              <p><strong>Installed:</strong> {{ page.install_date }}</p>
-              <img src="/images/{{ page.image }}" class="sidebar" />
+              <p><strong>Population:</strong> {{ page.info }}</p>
+              {% if page.image %}<img src="/images/{{ page.image }}" class="sidebar" />{% endif %}
             </div>
 
         {% assign count = count | plus: 1 %}

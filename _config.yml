@@ -1,7 +1,8 @@
 title: Parklets Map
-created_by: Code for America
 
 relative_permalinks: true
 permalink: pretty
 
-markdown: redcarpet
+
+# if wanted, directions adds a button with google maps link to the page's lat/long
+directions: false
