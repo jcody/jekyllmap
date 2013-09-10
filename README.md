@@ -10,7 +10,7 @@ Installation
 
 Adding Locations
 -----------------
-Locations are located in the `location/` folder as .txt files, supporting images reside in `images/`. Jekyll will compile all text files by default regardless of filename, as long as the file has a (yaml structure)[http://rhnh.net/2011/01/31/yaml-tutorial].
+Locations are located in the `location/` folder as .txt files, supporting images reside in `images/`. Jekyll will compile all text files by default regardless of filename, so long as the file has a [yaml structure](http://rhnh.net/2011/01/31/yaml-tutorial).
 
 The text file **must** be structured as follows:
 
@@ -31,7 +31,7 @@ The text file **must** be structured as follows:
     - optional features
     ---
 
-Latitude and longitudal coordinates can be found via (Google Maps)[http://universimmedia.pagesperso-orange.fr/geo/loc.htm].
+Latitude and longitudal coordinates can be found via [Google Maps](http://universimmedia.pagesperso-orange.fr/geo/loc.htm).
 
 
 Options
