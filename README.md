@@ -10,7 +10,7 @@ Installation
 
 Adding Locations
 -----------------
-Locations are located in the `/location` folder as .txt files, supporting images reside in `/images`. Jekyll will compile all text files by default regardless of filename, as long as the file has a (yaml structure)[http://rhnh.net/2011/01/31/yaml-tutorial].
+Locations are located in the `location/` folder as .txt files, supporting images reside in `images/`. Jekyll will compile all text files by default regardless of filename, as long as the file has a (yaml structure)[http://rhnh.net/2011/01/31/yaml-tutorial].
 
 The text file **must** be structured as follows:
 
@@ -36,16 +36,18 @@ Latitude and longitudal coordinates can be found via (Google Maps)[http://univer
 
 Options
 ---------
-As you might be able to tell, quite a bit is optional and there is plenty of room to add additional variables if needed.
+As you might be able to tell, quite a bit is optional and there is plenty of room to add/remove additional variables if needed.
 
 **Required** to properly plot a point:
-		layout: location
-		latitude: #
-		longitude: #
+    layout: location
+    latitude: #
+    longitude: #
 
 The `title: ` option gives a title to the listed point while `address: ` and `info: ` provide additional details to filter the points.
 
 
 Modifying the Map
 ------------------
-Feel free to change any functionality, all that is provided by default is an index page `/index.html` of all points as well as a location specific page which resides in `/_layouts/location.html`. All mapping functionality for the index page resides in `/assets/js/mapping.js`.
+Feel free to change any functionality. 
+
+All that is provided by default is an index page `index.html` which plots all points as well as a location specific page which resides in `_layouts/location.html`. All mapping functionality for the index page resides in `assets/js/mapping.js`.
