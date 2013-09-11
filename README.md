@@ -41,6 +41,7 @@ Options
 As you might be able to tell, quite a bit is optional and there is plenty of room to add/remove additional variables if needed.
 
 **Required** to properly plot a point:
+
     layout: location
     latitude: #
     longitude: #
