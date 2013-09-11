@@ -5,6 +5,7 @@ title: Houston
 latitude: 29.76019
 longitude: -95.36939
 address: Texas
+image: "houston.jpg"
 
 info: 2,160,821
 

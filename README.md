@@ -3,6 +3,8 @@ jekyllmap
 
 A simple jekyll site that generates a map!
 
+![ScreenShot](https://raw.github.com/mick/jekyllmap/general/example.png)
+
 Installation
 -------------
     git clone https://github.com/dthompson/jekyllmap.git

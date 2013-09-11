@@ -5,6 +5,7 @@ title: Chicago
 latitude: 41.87811
 longitude: -87.62980
 address: Illinois
+image: "chicago.jpg"
 
 info: 2,714,856
 
