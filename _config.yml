@@ -5,4 +5,4 @@ permalink: pretty
 
 
 # if wanted, directions adds a button with google maps link to the page's lat/long
-directions: false
+directions: true
