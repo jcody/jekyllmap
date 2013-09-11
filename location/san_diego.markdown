@@ -6,6 +6,8 @@ latitude: 32.71533
 longitude: -117.15726
 address: California
 
+image: "sandiego.jpg"
+
 info: 1,338,348 
 
 tags:

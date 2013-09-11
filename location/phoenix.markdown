@@ -6,6 +6,8 @@ latitude: 33.44838
 longitude: -112.07404
 address: Arizona
 
+image: "phoenix.jpg"
+
 info: 1,488,750
 
 tags:
