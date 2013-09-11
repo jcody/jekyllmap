@@ -17,6 +17,8 @@ layout: default
         </div>
         <div class="list-group" id="listings">
         	<div class="reveal">
+        		<h2 class="list-tags">About</h2>
+        		<p>{{page.about}}</p>
         		{% if page.image %}<img src="/images/{{ page.image }}" class="sidebar">{% endif %}
         		{% if page.tags %}
         		<h2 class="list-tags">Page Tags:</h2>
