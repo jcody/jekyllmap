@@ -13,7 +13,7 @@ $('.list-group-item').click(function() {
   if (transition == true) console.log('No double clicking dude.');
   else {
     // hide any open list items, open clicked
-    $('.details.in').collapse('hide');
+    if ($('div.in').length) { $('div.in').collapse('hide'); }
     $(this).next().collapse('toggle');
 
     // if clicked the same element, remove highlight

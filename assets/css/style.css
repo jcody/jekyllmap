@@ -33,6 +33,8 @@ div.leaflet-popup-content .btn-xs {
 	margin-bottom: 10px;
 }
 
+.collapsing {
+}
 
 
 /****** NEW NAVBAR ******/
@@ -97,7 +99,6 @@ h2.home {
 }
 
 div.details {
-	/*box-shadow: inset 0px 5px 2px rgba(0, 0, 0, 0.8), 0px -10px 5px #000;*/
 	background-color: #fff;
 	font-size: 12px;
 }
@@ -107,7 +108,6 @@ div.details {
 }
 
 .details:last-child {
-	border-bottom: 1px solid #ddd;
 }
 
 .main-content .col-md-3.revealed {
