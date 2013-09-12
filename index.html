@@ -24,10 +24,12 @@ layout: default
           {% if page.layout == 'location' %}
 
             <button class="list-group-item" data-target="#{{count}}">{{ page.title }} <p class="address">{{page.address}}</p></button>
-            <div id="{{count}}" class="collapse details">
-              <a href="{{ page.url }}" class="pull-right"><strong>More Info ></strong></a>
-              <p><strong>Installed:</strong> {{ page.install_date }}</p>
-              <img src="/images/{{ page.image }}" class="sidebar" />
+            <div id="{{count}}" class="collapse">
+              <div class="details">
+                <a href="{{ page.url }}" class="pull-right"><strong>More Info ></strong></a>
+                <p><strong>Installed:</strong> {{ page.install_date }}</p>
+                <img src="/images/{{ page.image }}" class="sidebar" />
+              </div>
             </div>
 
         {% assign count = count | plus: 1 %}
