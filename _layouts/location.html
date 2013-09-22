@@ -1,6 +1,8 @@
 ---
 layout: default
 ---
+{% capture lvl %}{{ page.url | append:'index.html' | split:'/' | size }}{% endcapture %}
+{% capture relative %}{% for i in (3..lvl) %}../{% endfor %}{% endcapture %}
 
 <div class="col-md-12">
     <div id="map-container">
@@ -19,7 +21,7 @@ layout: default
         	<div class="reveal">
         		<h2 class="list-tags">About</h2>
         		<p>{{page.about}}</p>
-        		{% if page.image %}<img src="/images/{{ page.image }}" class="sidebar">{% endif %}
+        		{% if page.image %}<img src="{{relative}}images/{{ page.image }}" class="sidebar">{% endif %}
         		{% if page.tags %}
         		<h2 class="list-tags">Page Tags:</h2>
 							<ul class="list-inline">
@@ -33,7 +35,7 @@ layout: default
 			</div>
 	    <div class="col-md-1 col-md-offset-11 flag fixed">
 	      <div class="point-counter"><p>Crafted By:</p>
-	        <a href="https://github.com/mick/jekyllmap"><img src="/assets/img/cfa_flag.png" width="50px" height="30px" /></a>
+	        <a href="https://github.com/mick/jekyllmap"><img src="{{relative}}assets/img/cfa_flag.png" width="50px" height="30px" /></a>
 	      </div>
 	    </div>
 		</div>
