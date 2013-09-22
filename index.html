@@ -4,6 +4,9 @@ layout: default
 {% assign total = 0 %}{% for page in site.pages %}{% if page.layout == 'location' %}
 {% assign total = total | plus: 1 %}{% endif %}{% endfor %}
 
+{% capture lvl %}{{ page.url | append:'index.html' | split:'/' | size }}{% endcapture %}
+{% capture relative %}{% for i in (3..lvl) %}../{% endfor %}{% endcapture %}
+
 <div class="row main-content">
 
 
@@ -28,7 +31,7 @@ layout: default
               <div class="details">
                 <a href="{{ page.url }}" class="pull-right"><strong>More Info ></strong></a>
                 <p><strong>Installed:</strong> {{ page.install_date }}</p>
-                <img src="/images/{{ page.image }}" class="sidebar" />
+                <img src="{{relative}}images/{{ page.image }}" class="sidebar" />
               </div>
             </div>
 
@@ -41,7 +44,7 @@ layout: default
     </div>
     <div class="col-md-1 col-md-offset-6 flag">
       <div class="point-counter"><p>Crafted By:</p>
-        <a href="https://github.com/mick/jekyllmap"><img src="/assets/img/cfa_flag.png" width="50px" height="30px" /></a>
+        <a href="https://github.com/mick/jekyllmap"><img src="{{relative}}assets/img/cfa_flag.png" width="50px" height="30px" /></a>
       </div>
     </div>
   </div>
@@ -51,5 +54,5 @@ layout: default
 
 </div>
 
-<script src="map.geojson"></script>
-<script src="/assets/js/mapping.js"></script>
+<script src="{{relative}}map.geojson"></script>
+<script src="{{relative}}assets/js/mapping.js"></script>
