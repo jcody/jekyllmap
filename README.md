@@ -1,7 +1,7 @@
 jekyllmap
 =========
 
-A simple jekyll site that generates a map!
+A simple jekyll site that generates geojson file, which in turn renders a leaflet map!
 
 ![ScreenShot](example.png)
 
