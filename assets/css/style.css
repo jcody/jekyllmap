@@ -258,3 +258,5 @@ button.list-group-item.active, button.list-group-item.active:hover {
 	-o-transition: all 0.1s ease-in-out;
 	transition: all 0.1s ease-in-out;
 }
+
+button.list-group-item { outline: 0; }

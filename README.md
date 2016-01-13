@@ -5,14 +5,17 @@ A simple jekyll site that generates a map!
 
 Installation
 -------------
-    git clone https://github.com/dthompson/jekyllmap.git
-    jekyll serve
+    $ git clone https://github.com/jcody/jekyllmap.git
+    $ bundle
+    $ jekyll serve
+
+Jekyll should then serve the app locally at http://127.0.0.1:4000.
 
 Adding Locations
 -----------------
-Locations are located in the `/locations` folder as .txt files, supporting images reside in `/images`. Preferably use the name of the parklet's sponsoring business as the filename to keep things clean, but jekyll will compile all text files by default regardless of filename.
+Locations live in the `/locations` folder as .txt files, supporting images reside in `/images`. Jekyll will compile all text files by default regardless of filename.
 
-The text file **must** be structured as follows:
+The text file must be structured as follows:
 
     ---
     title: Address of Parklet
