@@ -9,7 +9,7 @@ $('.list-group-item').click(function() {
 
   // fix for double clicking list, prevents toggle clusterfuck
   if ($(this).next().hasClass('collapsing')) var transition = true;
-  
+
   if (transition == true) console.log('No double clicking dude.');
   else {
     // hide any open list items, open clicked
@@ -35,7 +35,7 @@ $('.list-group-item').click(function() {
 
 var jekyllMap = (function (jekyllMap) {
 
-  // eventually builds object map of specific markers on each layer of the leaflet map 
+  // eventually builds object map of specific markers on each layer of the leaflet map
   var markers = new Array();
   var markerCount = 0;
   var markerMap = {};
@@ -48,11 +48,17 @@ var jekyllMap = (function (jekyllMap) {
   // PUBLIC METHODS
   function init() {
 
-    var map = L.map('map', {scrollWheelZoom: false});
+    var map = L.map('map', {
+      scrollWheelZoom: false,
+      maxZoom: 18
+    });
+
+
     map.attributionControl.setPrefix("");
 
+
     // mapping tiles
-    L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-vyofok3q/{z}/{x}/{y}.png', {maxZoom: 18}).addTo(map);
+    L.tileLayer('http://korona.geog.uni-heidelberg.de/tiles/roads/x={x}&y={y}&z={z}').addTo(map);
 
     // Leaflet marker points creation, each marker on a new layer
     // Takes in generated .geojson file and adds to map
@@ -70,7 +76,7 @@ var jekyllMap = (function (jekyllMap) {
       }
     }).addTo(map);
 
-    // account for sidebar and adjust map 450px to right 
+    // account for sidebar and adjust map 450px to right
     // and pad top+bottom 30px => this adjusts the zoom automagically, super convenient
     map.fitBounds(pointy.getBounds(), {paddingTopLeft: [450, 30], paddingBottomRight: [0, 30]});
 
@@ -110,7 +116,7 @@ var jekyllMap = (function (jekyllMap) {
     if (typeof coloredMarker != 'undefined') coloredMarker.setIcon(markerIcon);
 
     this.setIcon(markerIconActive);
-    coloredMarker = this;  
+    coloredMarker = this;
     $('button[data-target="#' + point + '"]').removeClass('hover');
     $('button[data-target="#' + point + '"]').click();
     $('html, body').animate({scrollTop: $('button[data-target="#'+point+'"]').offset().top}, 500);

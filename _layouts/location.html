@@ -54,7 +54,7 @@ layout: default
 
 <script>
   var markerIconActive = L.AwesomeMarkers.icon({
-    icon: 'coffee', 
+    icon: 'coffee',
     color: 'blue'
   });
 
@@ -67,7 +67,7 @@ layout: default
   var bounds = map.getBounds([{{page.latitude}}, {{page.longitude}}]);
   map.fitBounds(bounds, {paddingTopLeft: [200, 0]}).setZoom(14);
 
-  L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-vyofok3q/{z}/{x}/{y}.png', {
+  L.tileLayer('http://korona.geog.uni-heidelberg.de/tiles/roads/x={x}&y={y}&z={z}', {
     maxZoom: 18
   }).addTo(map);
 

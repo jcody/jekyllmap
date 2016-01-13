@@ -27,3 +27,9 @@ The text file must be structured as follows:
     ---
 
 Latitude and longitudal coordinates can be found via Google Maps.
+
+Contributions
+-------------
+Special thanks to [Mick Thompson](https://github.com/mick) & [Code for America](https://www.codeforamerica.org/).
+
+Leaflet mapping tiles courtesy of [Heidelberg University](http://korona.geog.uni-heidelberg.de/).
