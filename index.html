@@ -28,7 +28,7 @@ layout: default
             <button class="list-group-item" data-target="#{{count}}">{{ page.title }} <p class="address">{{page.address}}</p></button>
             <div id="{{count}}" class="collapse">
               <div class="details">
-                <a href="{{ page.url }}" class="pull-right"><strong>More Info ></strong></a>
+                <a href="{{ site.baseurl }}{{ page.url }}" class="pull-right"><strong>More Info ></strong></a>
                 <p><strong>Installed:</strong> {{ page.install_date }}</p>
                 <img src="{{ site.baseurl }}/images/{{ page.image }}" class="sidebar" />
               </div>

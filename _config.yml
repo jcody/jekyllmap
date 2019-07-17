@@ -1,5 +1,7 @@
 title: Parklets Map
 created_by: Joey Cody @ Code for America
+baseurl: /jekyllmap
 
 permalink: pretty
-markdown: redcarpet
+markdown: kramdown
+

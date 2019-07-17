@@ -44,7 +44,6 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    redcarpet (3.4.0)
     rouge (3.6.0)
     ruby_dep (1.5.0)
     safe_yaml (1.0.5)
@@ -59,7 +58,6 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll (~> 3.8.6)
-  redcarpet (~> 3.4)
 
 BUNDLED WITH
    1.17.2
