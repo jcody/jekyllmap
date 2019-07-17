@@ -1,15 +1,14 @@
 {% capture lvl %}{{ page.url | append:'index.html' | split:'/' | size }}{% endcapture %}
-{% capture relative %}{% for i in (3..lvl) %}../{% endfor %}{% endcapture %}
 
-  <link rel="stylesheet" href="{{relative}}assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-  <script src="{{relative}}assets/js/bootstrap.min.js"></script>
+  <script src="{{ site.baseurl }}/assets/js/bootstrap.min.js"></script>
   <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
 
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-  <link rel="stylesheet" href="{{relative}}assets/css/leaflet.awesome-markers.css">
-  <script src="{{relative}}assets/js/leaflet.awesome-markers.min.js"></script>
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/leaflet.awesome-markers.css">
+  <script src="{{ site.baseurl }}/assets/js/leaflet.awesome-markers.min.js"></script>
 
-  <link rel="stylesheet" href="{{relative}}assets/css/style.css" />
-  <link rel="shortcut icon" href="{{relative}}assets/img/favicon.ico" />
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css" />
+  <link rel="shortcut icon" href="{{ site.baseurl }}/assets/img/favicon.ico" />

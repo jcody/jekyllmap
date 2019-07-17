@@ -11,6 +11,8 @@ Installation
 
 Jekyll should then serve the app locally at http://127.0.0.1:4000.
 
+Note the site is built and served from the `_site` directory. To make any changes, look at the `_layouts/`, `_includes/` directories and `config.yml`. All changes will be reflected into a newly built `_site/` static set of HTML pages.
+
 Adding Locations
 -----------------
 Locations live in the `/locations` folder as .txt files, supporting images reside in `/images`. Jekyll will compile all text files by default regardless of filename.
