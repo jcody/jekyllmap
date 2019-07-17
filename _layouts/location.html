@@ -67,7 +67,7 @@ layout: default
   var bounds = map.getBounds([{{page.latitude}}, {{page.longitude}}]);
   map.fitBounds(bounds, {paddingTopLeft: [200, 0]}).setZoom(14);
 
-  L.tileLayer('http://korona.geog.uni-heidelberg.de/tiles/roads/x={x}&y={y}&z={z}', {
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png', {
     maxZoom: 18
   }).addTo(map);
 
